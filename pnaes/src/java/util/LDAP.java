@@ -69,7 +69,6 @@ public class LDAP {
     }
     public static void main(String[] args) throws Exception {
         LDAP ldap = new LDAP();
-        System.out.println("KKKK");
         boolean a = ldap.auntenticaUsuario("1824433", "Lagarta1@");
         System.out.println("a = "+a);
     }

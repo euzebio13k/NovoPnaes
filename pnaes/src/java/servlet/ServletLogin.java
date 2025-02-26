@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlet;
 
 import dao.DaoFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,22 +42,25 @@ public class ServletLogin extends HttpServlet {
             HttpSession sessao = request.getSession();
             sessao.setMaxInactiveInterval(3000);
             String msg = new String();
+            LDAP ldap = new LDAP();
 
-            boolean autentica = true;
-            
-            if (login.equals("123456") && senha.equals("admin")) {
+            boolean autentica = ldap.auntenticaUsuario(login, senha);
+            if ((login.equals("123456") && senha.equals("admin")) || autentica == true) {
+                /*
                 Pessoa pessoa = (Pessoa) daoFactory.getPessoaDao().pesquisarPor(login, "cpf").get(0);
                 sessao.setAttribute("cpf", pessoa.getCpf());
                 sessao.setAttribute("nome", pessoa.getNome());
                 sessao.setAttribute("nivel", pessoa.getNivel());
                 sessao.setAttribute("pessoa_id", pessoa.getId());
+                */
                 response.sendRedirect("home.jsp");
             } else {
 
                 msg = "Usuário ou senha incorretos (USE O USUÁRIO E SENHA DO SUAP)";
                 request.getRequestDispatcher("index.jsp?msg=" + msg).forward(request, response);
             }
-
+        } catch (Exception ex) {
+            Logger.getLogger(ServletLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
