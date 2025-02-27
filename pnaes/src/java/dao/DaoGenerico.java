@@ -32,7 +32,7 @@ public class DaoGenerico<T> {
     public T inserirOuAlterar(T u) {
         try {
             em.getTransaction().begin();
-            em.merge(u);
+            u = em.merge(u);
             em.getTransaction().commit();
             return u;
         } catch (Exception e) {
@@ -95,6 +95,18 @@ public class DaoGenerico<T> {
     public List<T> perquisarPorPessoa(Integer idPessoa) {
         try {
             String jpql = "select a from " + classe.getSimpleName() + " a where a.pessoa.id = " + idPessoa;
+            return em.createQuery(jpql, classe).getResultList();
+
+        } catch (Exception ex) {
+            return null;
+        }
+        finally {
+            em.close();
+        }
+    }
+    public List<T> perquisarPorAluno(Integer idAluno) {
+        try {
+            String jpql = "select a from " + classe.getSimpleName() + " a where a.aluno.id = " + idAluno;
             return em.createQuery(jpql, classe).getResultList();
 
         } catch (Exception ex) {

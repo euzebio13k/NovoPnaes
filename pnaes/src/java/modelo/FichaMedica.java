@@ -37,8 +37,8 @@ public class FichaMedica implements Serializable{
     private Boolean temPlanoSaude;
    
     @OneToOne
-    @JoinColumn(name="pessoa_id", unique=true)
-    private Pessoa pessoa;
+    @JoinColumn(name="aluno_id", unique=true)
+    private Aluno aluno;
 
     public Integer getId() {
         return id;
@@ -164,12 +164,12 @@ public class FichaMedica implements Serializable{
     
     
     
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
   
 }

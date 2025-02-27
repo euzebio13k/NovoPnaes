@@ -26,8 +26,8 @@ public class Despesa implements Serializable{
     private Double outrasDespesas;
     private String qualOutrasDespesas;
     @OneToOne
-    @JoinColumn(name="pessoa_id", unique=true)
-    private Pessoa pessoa;
+    @JoinColumn(name="aluno_id", unique=true)
+    private Aluno aluno;
 
     public Double getDespesaTotal(){
         return moradia+alimentacao+transporte+agua+energia+telefone+farmacia+outrasDespesas;
@@ -91,12 +91,12 @@ public class Despesa implements Serializable{
 
    
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
     public Double getFarmacia() {
@@ -122,9 +122,6 @@ public class Despesa implements Serializable{
         this.qualOutrasDespesas = qualOutrasDespesas;
     }
     
-    
-
-   
 }
 
    

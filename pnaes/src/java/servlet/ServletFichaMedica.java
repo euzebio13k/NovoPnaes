@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.FichaMedica;
 import modelo.Aluno;
-import modelo.Pessoa;
 
 /**
  *
@@ -41,7 +40,6 @@ public class ServletFichaMedica extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             DaoFactory daoFactory = new DaoFactory();
             FichaMedica fichaMedica = new FichaMedica();
-            Pessoa pessoa = new Pessoa();
             Aluno aluno = new Aluno();
             String opcao = request.getParameter("opcao");
             String msg = new String();
@@ -102,7 +100,7 @@ public class ServletFichaMedica extends HttpServlet {
                 break;
                 case "alterar":
                      //Setando dados da Ficha Medica
-                    fichaMedica = (FichaMedica) daoFactory.getFichaMedicaDao().perquisarListaPorAluno(Integer.parseInt(request.getParameter("aluno_id"))).get(0);
+                    fichaMedica = (FichaMedica) daoFactory.getFichaMedicaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id"))).get(0);
                     fichaMedica.setId(Integer.parseInt(request.getParameter("id")));
                     fichaMedica.setQualDoenca(request.getParameter("tipoDoenca"));
                     fichaMedica.setTemMedicamento(request.getParameter("medicamento").equals("Sim"));
@@ -117,7 +115,7 @@ public class ServletFichaMedica extends HttpServlet {
                 break;
                 case "alterar_5_passo":
                      
-                    fichaMedica = (FichaMedica) daoFactory.getFichaMedicaDao().perquisarListaPorAluno(Integer.parseInt(request.getParameter("aluno_id"))).get(0);
+                    fichaMedica = (FichaMedica) daoFactory.getFichaMedicaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id"))).get(0);
                     
                     fichaMedica.setTemCartaoSUS(request.getParameter("sus").equals("Sim"));
                     fichaMedica.setTemPlanoSaude(request.getParameter("planoSaude").equals("Sim"));

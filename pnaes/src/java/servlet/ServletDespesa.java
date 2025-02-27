@@ -95,7 +95,7 @@ public class ServletDespesa extends HttpServlet {
                     case "alterar_6_passo":
                         //Setando dados do Despesa Mensal
                         //despesa.setId(Integer.parseInt(request.getParameter("id")));
-                        despesas = daoFactory.getDespesaDao().perquisarListaPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                        despesas = daoFactory.getDespesaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
                         if(despesas.size() > 0){
                          despesa = despesas.get(0);
                         }
@@ -118,7 +118,7 @@ public class ServletDespesa extends HttpServlet {
                         case "alterar_dados_despesa":
                         //Setando dados do Despesa Mensal
                         //despesa.setId(Integer.parseInt(request.getParameter("id")));
-                        despesas = daoFactory.getDespesaDao().perquisarListaPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                        despesas = daoFactory.getDespesaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
                         if(despesas.size() > 0){
                          despesa = despesas.get(0);
                         }

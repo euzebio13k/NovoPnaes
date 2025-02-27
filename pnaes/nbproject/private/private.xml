@@ -3,17 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/edital/listar.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/edital/alterar.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/home.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/css/estilo.css</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/menu.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/menu_antigo.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/edital/excluir.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/edital/cadastrar.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/cabecalho.jsp</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/src/java/servlet/ServletEdital.java</file>
-            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/bolsa/listar.jsp</file>
+            <file>file:/home/euzebio/NetBeansProjects/pnaes/web/pessoa/cadastrar.jsp</file>
         </group>
     </open-files>
 </project-private>

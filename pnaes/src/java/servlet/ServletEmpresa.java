@@ -70,7 +70,7 @@ public class ServletEmpresa extends HttpServlet {
                     empresa.setOrenda(0.00);
                      
                    // seta aluno na empresa
-                    empresa.setAluno(aluno);
+                    empresa.setPessoa(aluno);
                     
                     daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
                     
@@ -80,7 +80,7 @@ public class ServletEmpresa extends HttpServlet {
                     break;
                 case "alterar_2_passo":
                     
-                    empresa = daoFactory.getEmpresaDao().perquisarClassePorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                    //empresa = daoFactory.getEmpresaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
                      //Setando dados do Empresa
                     empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
                     empresa.setAtividade(request.getParameter("atividade")!=null?request.getParameter("atividade"):null);
@@ -98,7 +98,7 @@ public class ServletEmpresa extends HttpServlet {
                     empresa.setOrenda(0.00);
                     
                    // seta aluno na empresa
-                    empresa.setAluno(aluno);
+                    empresa.setPessoa(aluno);
                    
                     //Altera a empresa
                     daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
@@ -108,7 +108,7 @@ public class ServletEmpresa extends HttpServlet {
                     break;
                     case "alterar_dados_ocupacao":
                     
-                    empresa = daoFactory.getEmpresaDao().perquisarClassePorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                    //empresa = daoFactory.getEmpresaDao().perquisarClassePorAluno(Integer.parseInt(request.getParameter("aluno_id")));
                      //Setando dados do Empresa
                     empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
                     empresa.setAtividade(request.getParameter("atividade")!=null?request.getParameter("atividade"):null);
@@ -126,7 +126,7 @@ public class ServletEmpresa extends HttpServlet {
                     empresa.setOrenda(0.00);
                     
                    // seta aluno na empresa
-                    empresa.setAluno(aluno);
+                    empresa.setPessoa(aluno);
                    
                     //Altera a empresa
                     daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
@@ -144,7 +144,7 @@ public class ServletEmpresa extends HttpServlet {
                     empresa.setTelefone(request.getParameter("telefone"));
                    
                     //aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("aluno_id")));
-                    empresa.setAluno(aluno);
+                    empresa.setPessoa(aluno);
                     //Chamando o metodo alterar do dao e redirecionando para listar empresa                     
                     daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
                     response.sendRedirect("empresa/listar.jsp");

@@ -61,8 +61,8 @@ public class ServletAluno extends HttpServlet {
             Cidade cidade = new Cidade();
             Uf uf = new Uf();
             Uf ufe = new Uf();
-            Curso curso = new Curso(); 
-            Campus campus = new Campus(); 
+            Curso curso = new Curso();
+            Campus campus = new Campus();
             String opcao = request.getParameter("opcao");
             String msg = new String();
             String cpf = new String();
@@ -70,94 +70,85 @@ public class ServletAluno extends HttpServlet {
             switch (opcao) {
                 case "upload":
                     try {
-				/*Faz o parse do request*/
-				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+                        /*Faz o parse do request*/
+                        List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-				/*Escreve a o arquivo na pasta img*/
-				for (FileItem item : multiparts) {
-					if (!item.isFormField()) {
-						item.write(new File(request.getServletContext().getRealPath("img")+ File.separator + "uploadfile"));
-					}
-				}
+                        /*Escreve a o arquivo na pasta img*/
+                        for (FileItem item : multiparts) {
+                            if (!item.isFormField()) {
+                                item.write(new File(request.getServletContext().getRealPath("img") + File.separator + "uploadfile"));
+                            }
+                        }
 
-				request.setAttribute("message", "Arquivo carregado com sucesso");
-                    }catch (Exception ex) {
-				request.setAttribute("message", "Upload de arquivo falhou devido a "+ ex);
+                        request.setAttribute("message", "Arquivo carregado com sucesso");
+                    } catch (Exception ex) {
+                        request.setAttribute("message", "Upload de arquivo falhou devido a " + ex);
                     }
                     response.sendRedirect("home.jsp");
-                    
-                break;
+
+                    break;
                 case "cadastrar":
+
                     
-                    
-                    //Setando dados do Aluno
-                    try{
+                    try {
                         dtn.setTime(formato.parse(request.getParameter("dtn")));
-                    }catch(ParseException e){
-                        msg = "Data de Nascimento Invalida"; 
-                        request.getRequestDispatcher("pessoa/cadastrar.jsp?msg="+msg+"&login="+request.getParameter("login")).forward(request, response);
+                    } catch (ParseException e) {
+                        msg = "Data de Nascimento Invalida";
+                        request.getRequestDispatcher("pessoa/cadastrar.jsp?msg=" + msg + "&login=" + request.getParameter("login")).forward(request, response);
                     }
-                    try{
-                    aluno.setNome(request.getParameter("nome"));
-                    cpf = request.getParameter("cpf").replace(".", "");
-                    aluno.setCpf(cpf.replace("-", ""));
-                    
-                    aluno.setSexo(request.getParameter("sexo"));
-                    aluno.setAutoDeclaracao(request.getParameter("autoDeclaracao"));
-                    aluno.setRg(request.getParameter("rg"));
-                    aluno.setEmail(request.getParameter("email"));
-                    aluno.setTelefone(request.getParameter("telefone"));
-                    aluno.setDtn(dtn);
-                    aluno.setMatricula(request.getParameter("matricula"));
-                    aluno.setEstadoCivil(request.getParameter("estadoCivil"));
-                   // aluno.setAtividadeProf(request.getParameter("atividadeProf"));
-                   // aluno.setCarteira(request.getParameter("carteira"));
-                    aluno.setNivel(1);
-                    aluno.setStatusCadastro(0);
-                    
-                    //Setando dados do Endereço
-                    endereco.setLogradouro(request.getParameter("logradouro"));
-                    endereco.setNumero(request.getParameter("numero"));
-                    endereco.setBairro(request.getParameter("bairro"));
-                    endereco.setComplemento(request.getParameter("complemento"));
-                    endereco.setCep(request.getParameter("cep"));
-                    //endereco.setId(1);
-                    
-                    //Setando os Objetos do Aluno
-                    cidade.setId(Integer.parseInt(request.getParameter("cidade")));
-                    uf.setId(Integer.parseInt(request.getParameter("uf")));
-                    ufe.setId(Integer.parseInt(request.getParameter("ufe")));
-                    cidade.setUf(uf);
-                    endereco.setCidade(cidade);
-                    
-                    aluno.setUfExpedicao(ufe);
-                    
-                    //Seta Endereço no Banco
-                    endereco = daoFactory.getEnderecoDao().inserirOuAlterar(endereco);
-                    
-                    //Seta Enderço na classe Aluno
-                    aluno.setEndereco(endereco);
-                    daoFactory.getAlunoDao().inserirOuAlterar(aluno);
-                    //response.sendRedirect("index.jsp");
-                    }catch(ExceptionInInitializerError ce){
-                        if (ce.getException().toString().contains("cpf")){
+                    try {
+                        //Setando dados do Aluno
+                        aluno.setNome(request.getParameter("nome"));
+                        cpf = request.getParameter("cpf").replace(".", "");
+                        aluno.setCpf(cpf.replace("-", ""));
+                        aluno.setSexo(request.getParameter("sexo"));
+                        aluno.setAutoDeclaracao(request.getParameter("autoDeclaracao"));
+                        aluno.setRg(request.getParameter("rg"));
+                        aluno.setEmail(request.getParameter("email"));
+                        aluno.setTelefone(request.getParameter("telefone"));
+                        aluno.setDtn(dtn);
+                        aluno.setMatricula(request.getParameter("matricula"));
+                        aluno.setEstadoCivil(request.getParameter("estadoCivil"));
+                        aluno.setNivel(1);
+                        aluno.setStatusCadastro(0);
+                        //Setando dados do Endereço
+                        endereco.setLogradouro(request.getParameter("logradouro"));
+                        endereco.setNumero(request.getParameter("numero"));
+                        endereco.setBairro(request.getParameter("bairro"));
+                        endereco.setComplemento(request.getParameter("complemento"));
+                        endereco.setCep(request.getParameter("cep"));
+                        //Setando os Objetos do Aluno
+                        cidade.setId(Integer.parseInt(request.getParameter("cidade")));
+                        uf.setId(Integer.parseInt(request.getParameter("uf")));
+                        ufe.setId(Integer.parseInt(request.getParameter("ufe")));
+                        cidade.setUf(uf);
+                        endereco.setCidade(cidade);
+                        aluno.setUfExpedicao(ufe);
+                        //Seta Endereço no Banco
+                        endereco = daoFactory.getEnderecoDao().inserirOuAlterar(endereco);
+                        //Seta Enderço na classe Aluno
+                        aluno.setEndereco(endereco);
+                        //setando Aluno no Banco
+                        daoFactory.getAlunoDao().inserirOuAlterar(aluno);
+                        response.sendRedirect("home.jsp");
+                    } catch (ExceptionInInitializerError ce) {
+                        if (ce.getException().toString().contains("cpf")) {
                             msg = "CPF já cadastrado";
-                        }
-                        else if(ce.getException().toString().contains("email")){
+                        } else if (ce.getException().toString().contains("email")) {
                             msg = "Email já cadastrado";
-                        } else{
+                        } else {
                             msg = "Erro ao Inserir o Cadastro";
                         }
-                         
-                        request.getRequestDispatcher("pessoa/cadastrar.jsp?msg="+msg+"&login="+request.getParameter("login")).forward(request, response);
+
+                        request.getRequestDispatcher("pessoa/cadastrar.jsp?msg=" + msg + "&login=" + request.getParameter("login")).forward(request, response);
                     }
-                    response.sendRedirect("/pnaes/ServletLogin?primeiroCadastro=true&login="+request.getParameter("login"));
+                    //response.sendRedirect("/pnaes/ServletLogin?primeiroCadastro=true&login="+request.getParameter("login"));
                     //request.getRequestDispatcher("/pnaes/ServletLogin?primeiroCadastro=true&login="+request.getParameter("login")).forward(request, response);
-                   
+
                     break;
                 case "preencher":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
-                    
+
                     campus.setId(Integer.parseInt(request.getParameter("campus")));
                     curso.setCampus(campus);
                     curso.setId(Integer.parseInt(request.getParameter("curso")));
@@ -168,26 +159,27 @@ public class ServletAluno extends HttpServlet {
                     aluno.setEnsinoFundamental(request.getParameter("ensinoFundamental"));
                     aluno.setEntradaIfto(request.getParameter("entrada"));
                     aluno.setPeriodoVisita(request.getParameter("visita"));
-                    
-                    if(request.getParameter("reprovousimounao")!=null){
-                    aluno.setReprovou(request.getParameter("reprovousimounao").equals("Sim"));
-                    if(request.getParameter("reprovousimounao").equals("Sim"))
-                    aluno.setReprovouQuantas(Integer.parseInt(request.getParameter("reprovou")));
-                    else
-                    aluno.setReprovouQuantas(null);
-                    }else{
+
+                    if (request.getParameter("reprovousimounao") != null) {
+                        aluno.setReprovou(request.getParameter("reprovousimounao").equals("Sim"));
+                        if (request.getParameter("reprovousimounao").equals("Sim")) {
+                            aluno.setReprovouQuantas(Integer.parseInt(request.getParameter("reprovou")));
+                        } else {
+                            aluno.setReprovouQuantas(null);
+                        }
+                    } else {
                         aluno.setReprovou(false);
                         aluno.setReprovouQuantas(null);
                     }
-                    
+
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     response.sendRedirect("empresa/cadastrar.jsp");
                     break;
-                    case "alterar_1_passo":
+                case "alterar_1_passo":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
-                    
-                   // campus.setId(Integer.parseInt(request.getParameter("campus")));
-                   // curso.setCampus(campus);
+
+                    // campus.setId(Integer.parseInt(request.getParameter("campus")));
+                    // curso.setCampus(campus);
                     curso.setId(Integer.parseInt(request.getParameter("curso")));
                     aluno.setCurso(curso);
                     aluno.setPeriodo(Integer.parseInt(request.getParameter("periodo")));
@@ -196,53 +188,53 @@ public class ServletAluno extends HttpServlet {
                     aluno.setEnsinoFundamental(request.getParameter("ensinoFundamental"));
                     aluno.setEntradaIfto(request.getParameter("entrada"));
                     aluno.setPeriodoVisita(request.getParameter("visita"));
-                    
-                    if(request.getParameter("reprovousimounao")!=null){
-                    aluno.setReprovou(request.getParameter("reprovousimounao").equals("Sim"));
-                    if(request.getParameter("reprovousimounao").equals("Sim"))
-                    aluno.setReprovouQuantas(Integer.parseInt(request.getParameter("reprovou")));
-                    else
-                    aluno.setReprovouQuantas(null);
-                    }else{
+
+                    if (request.getParameter("reprovousimounao") != null) {
+                        aluno.setReprovou(request.getParameter("reprovousimounao").equals("Sim"));
+                        if (request.getParameter("reprovousimounao").equals("Sim")) {
+                            aluno.setReprovouQuantas(Integer.parseInt(request.getParameter("reprovou")));
+                        } else {
+                            aluno.setReprovouQuantas(null);
+                        }
+                    } else {
                         aluno.setReprovou(false);
                         aluno.setReprovouQuantas(null);
                     }
-                    
-                    
+
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     response.sendRedirect("home.jsp");
                     break;
-                  case "cadastrar_3_passo":
+                case "cadastrar_3_passo":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setDependeciaFamiliar(request.getParameter("dependenciaFamiliar"));
                     aluno.setMoradia(request.getParameter("moradia"));
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     response.sendRedirect("moradia/cadastrar.jsp");
-                    break; 
-                 case "alterar_3_passo":
+                    break;
+                case "alterar_3_passo":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setDependeciaFamiliar(request.getParameter("dependenciaFamiliar"));
                     aluno.setMoradia(request.getParameter("moradia"));
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
-                    if(aluno.getMoradia().equals("sozinho") && aluno.getDependeciaFamiliar().equals("indepTodas")){
+                    if (aluno.getMoradia().equals("sozinho") && aluno.getDependeciaFamiliar().equals("indepTodas")) {
                         //Excluir os Dependentes
                         List<Dependente> dependentes = daoFactory.getDependenteDao().perquisarPorPessoa(aluno.getId());
-                        if(!dependentes.isEmpty()){
-                            for(Dependente d : dependentes) {
-                             daoFactory.getDependenteDao().excluir(d);
+                        if (!dependentes.isEmpty()) {
+                            for (Dependente d : dependentes) {
+                                daoFactory.getDependenteDao().excluir(d);
                             }
                         }
                     }
                     response.sendRedirect("home.jsp");
                     break;
-                 case "cadastrar_4_passo":
+                case "cadastrar_4_passo":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setOndeReside(request.getParameter("ondeReside"));
                     aluno.setTipoMoradia(request.getParameter("tipoMoradia"));
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     response.sendRedirect("fichaMedica/cadastrar.jsp");
                     break;
-                  case "alterar_4_passo":
+                case "alterar_4_passo":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setOndeReside(request.getParameter("ondeReside"));
                     aluno.setTipoMoradia(request.getParameter("tipoMoradia"));
@@ -251,7 +243,7 @@ public class ServletAluno extends HttpServlet {
                     break;
                 case "alterar_dados_pessoais":
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
-                    
+
                     //Setando dados do Aluno
                     dtn.setTime(formato.parse(request.getParameter("dtn")));
                     aluno.setDtn(dtn);
@@ -264,50 +256,49 @@ public class ServletAluno extends HttpServlet {
                     aluno.setTelefone(request.getParameter("telefone"));
                     ufe.setId(Integer.parseInt(request.getParameter("ufe")));
                     aluno.setUfExpedicao(ufe);
-                    
+
                     //Setando dados do Endereço
                     endereco = aluno.getEndereco();
                     endereco.setLogradouro(request.getParameter("logradouro"));
                     endereco.setNumero(request.getParameter("numero"));
                     endereco.setBairro(request.getParameter("bairro"));
-                    endereco.setComplemento(request.getParameter("complemento")!=null?request.getParameter("complemento"):aluno.getEndereco().getComplemento());
+                    endereco.setComplemento(request.getParameter("complemento") != null ? request.getParameter("complemento") : aluno.getEndereco().getComplemento());
                     endereco.setCep(request.getParameter("cep"));
-                    
+
                     //uf.setId(Integer.parseInt(request.getParameter("uf")));
                     //cidade.setUf(uf);
                     cidade.setId(Integer.parseInt(request.getParameter("cidade")));
-                    
-                    
+
                     endereco.setCidade(cidade);
-                    
+
                     endereco = daoFactory.getEnderecoDao().inserirOuAlterar(endereco);
                     aluno.setEndereco(endereco);
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     String idIncricao = request.getParameter("i_id");
-                   request.getRequestDispatcher("documento/cadastrar.jsp?i_id="+idIncricao+"&editar=1&msg=Dados Pessoais foram alterados com sucesso!").forward(request, response);
-                       
-                   // response.sendRedirect("documento/cadastrar.jsp?i_id="+request.getParameter("i_id")+"&editar=1");
+                    request.getRequestDispatcher("documento/cadastrar.jsp?i_id=" + idIncricao + "&editar=1&msg=Dados Pessoais foram alterados com sucesso!").forward(request, response);
+
+                    // response.sendRedirect("documento/cadastrar.jsp?i_id="+request.getParameter("i_id")+"&editar=1");
                     break;
                 case "alterar_permissao":
 
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setNivel(Integer.parseInt(request.getParameter("nivel")));
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
-                    response.sendRedirect("usuario/listar.jsp?id_usuario="+aluno.getId());
+                    response.sendRedirect("usuario/listar.jsp?id_usuario=" + aluno.getId());
                     break;
                 case "excluir":
 
                     aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     daoFactory.getAlunoDao().excluir(aluno);
                     response.sendRedirect("aluno/listar.jsp");
-                  break;
-                  
-              case "continuar_Inscricao":
-                  aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
+                    break;
+
+                case "continuar_Inscricao":
+                    aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
                     aluno.setStatusCadastro(7);
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     response.sendRedirect("inscricao/inscricao.jsp");
-                break;
+                    break;
             }
 
         } catch (ParseException ex) {

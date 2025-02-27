@@ -4,6 +4,7 @@ import dao.DaoFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Aluno;
 import modelo.Pessoa;
 import util.LDAP;
 
@@ -46,16 +48,18 @@ public class ServletLogin extends HttpServlet {
 
             boolean autentica = ldap.auntenticaUsuario(login, senha);
             if ((login.equals("123456") && senha.equals("admin")) || autentica == true) {
-                /*
-                Pessoa pessoa = (Pessoa) daoFactory.getPessoaDao().pesquisarPor(login, "cpf").get(0);
-                sessao.setAttribute("cpf", pessoa.getCpf());
-                sessao.setAttribute("nome", pessoa.getNome());
-                sessao.setAttribute("nivel", pessoa.getNivel());
-                sessao.setAttribute("pessoa_id", pessoa.getId());
-                */
-                response.sendRedirect("home.jsp");
-            } else {
+                try {
+                    Aluno aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPor(login, "matricula").get(0);
+                    sessao.setAttribute("login", aluno.getMatricula());
+                    sessao.setAttribute("nome", aluno.getNome());
+                    sessao.setAttribute("nivel", aluno.getNivel());
+                    response.sendRedirect("home.jsp");
+                } catch (IndexOutOfBoundsException e) {
+                    msg = "Faça o seu cadastro!";
+                    response.sendRedirect("pessoa/cadastrar.jsp?msg=" +msg+"&login="+login);
+                }
 
+            } else {
                 msg = "Usuário ou senha incorretos (USE O USUÁRIO E SENHA DO SUAP)";
                 request.getRequestDispatcher("index.jsp?msg=" + msg).forward(request, response);
             }
