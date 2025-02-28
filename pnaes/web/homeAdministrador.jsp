@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="modelo.Edital"%>
 <%@page import="modelo.Categoria"%>
 <%@page import="modelo.Inscricao"%>
 <%@page import="modelo.Bolsa"%>
@@ -17,11 +19,14 @@
                         </div>
                         <div class="element-info-text">
                              <%
+                                 //DaoFactory daoFactory = new DaoFactory();
+                                 DecimalFormat decimal = new DecimalFormat("###,###,###,##0.00");
+                                 Edital edital = (Edital) daoFactory.getEditalDao().listar().get(0);
                           List<Inscricao> inscricoes = null;
 	                  inscricoes = daoFactory.getInscricaoDao().perquisarPorEdital(edital.getId());
                           %>
                             <h5 class="element-inner-header">
-                                PNAES - IFTO - <i>Campus </i> <%=edital.getCampus().getNome()%>
+                                PNAES - IFTO - <i>Campus </i>
                             </h5>
                             <div class="element-inner-desc">
                               

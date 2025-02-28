@@ -38,30 +38,33 @@
     padding: 20px 50px;
     
 }
+.conteiner{
+    background-color: #eee; 
+}
 .form-group label{
     
     background-color: #CCCCCC;
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     font-size: 120%;
     
 }
 .form-group input{
-    margin-top: 2px;
-    margin-bottom: 2px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 
     
 }
 .header{
-    background-color: yellow;
+    background-color: #eee;
     padding: 20px;
+    display: flex;
 }
 fieldset {
 	border:1px dashed #CCC;
 	padding:10px;
 	margin-top:20px;
 	margin-bottom:20px;
-        
 }
 h2{
     text-align: center;
@@ -72,6 +75,41 @@ h2{
     text-align: center;
     padding: 20px;
 }
+.user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    text-align: right;
+    
+}
+.user_avatar {
+    
+    width: 50px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.user_infos {
+    display: flex;
+    flex-direction: column;
+}
+
+.user_infos span:last-child {
+    color: #6b6b6b;
+    font-size: 12px;
+}
+item-description {
+    width: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    transition: width .6s;
+    height: 0px;
+}
+
 @media (max-width: 480px) {
     .sidebar{
         width: 60px;

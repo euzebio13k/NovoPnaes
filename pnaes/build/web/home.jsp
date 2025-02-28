@@ -7,13 +7,13 @@
         <link href="css/estilo.css" rel="stylesheet">
     </head>
     <body>
-        <div class="conteiner-fluid">            
+        <div>            
             <%@include file="menu.jsp" %>
             <main class="main-content">
                 <%@include file="cabecalho.jsp" %>    
                 <h2>Minha home</h2>
                 <div class="conteudo row">
-                
+                    <%@include file="homeAluno.jsp" %>    
                 </div>
             </main>
         </div>

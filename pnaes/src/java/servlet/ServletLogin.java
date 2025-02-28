@@ -50,7 +50,8 @@ public class ServletLogin extends HttpServlet {
             if ((login.equals("123456") && senha.equals("admin")) || autentica == true) {
                 try {
                     Aluno aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPor(login, "matricula").get(0);
-                    sessao.setAttribute("login", aluno.getMatricula());
+                    sessao.setAttribute("aluno_id", aluno.getId());
+                    sessao.setAttribute("matricula", aluno.getMatricula());
                     sessao.setAttribute("nome", aluno.getNome());
                     sessao.setAttribute("nivel", aluno.getNivel());
                     response.sendRedirect("home.jsp");
