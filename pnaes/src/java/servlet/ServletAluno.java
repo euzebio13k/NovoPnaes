@@ -159,6 +159,7 @@ public class ServletAluno extends HttpServlet {
                     aluno.setEnsinoFundamental(request.getParameter("ensinoFundamental"));
                     aluno.setEntradaIfto(request.getParameter("entrada"));
                     aluno.setPeriodoVisita(request.getParameter("visita"));
+                    aluno.setStatusCadastro(1);
 
                     if (request.getParameter("reprovousimounao") != null) {
                         aluno.setReprovou(request.getParameter("reprovousimounao").equals("Sim"));

@@ -47,134 +47,141 @@ public class ServletEmpresa extends HttpServlet {
             Aluno aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("aluno_id")));
             Empresa empresa = new Empresa();
             String opcao = request.getParameter("opcao");
-           
-        try {
-            switch (opcao) {
-                
-                case "cadastrar":
-                    
-                    //Setando dados do Empresa
-                    empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
-                    empresa.setAtividade(request.getParameter("atividade")!=null?request.getParameter("atividade"):null);
-                    empresa.setNome(request.getParameter("nome")!=null?request.getParameter("nome"):null);
-                    empresa.setTelefone(request.getParameter("telefone")!=null?request.getParameter("telefone"):null);
-                    
-                    if(request.getParameter("renda")!=null && !request.getParameter("renda").equals(""))
-                    empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setRenda(0.00);
-                    
-                    if(request.getParameter("orenda")!=null && !request.getParameter("orenda").equals(""))
-                    empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setOrenda(0.00);
-                     
-                   // seta aluno na empresa
-                    empresa.setPessoa(aluno);
-                    
-                    daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
-                    
-                    //redireciona para o próximo passo
-                    response.sendRedirect("dependente/listar.jsp");
-                   
-                    break;
-                case "alterar_2_passo":
-                    
-                    //empresa = daoFactory.getEmpresaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
-                     //Setando dados do Empresa
-                    empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
-                    empresa.setAtividade(request.getParameter("atividade")!=null?request.getParameter("atividade"):null);
-                    empresa.setNome(request.getParameter("nome")!=null?request.getParameter("nome"):null);
-                    empresa.setTelefone(request.getParameter("telefone")!=null?request.getParameter("telefone"):null);
-                    
-                    if(request.getParameter("renda")!=null && !request.getParameter("renda").equals(""))
-                    empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setRenda(0.00);
-                    
-                    if(request.getParameter("orenda")!=null && !request.getParameter("orenda").equals(""))
-                    empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setOrenda(0.00);
-                    
-                   // seta aluno na empresa
-                    empresa.setPessoa(aluno);
-                   
-                    //Altera a empresa
-                    daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
-                     
-                    //redireciona para a pagina inicial
-                   response.sendRedirect("home.jsp");
-                    break;
+
+            try {
+                switch (opcao) {
+
+                    case "cadastrar":
+
+                        //Setando dados do Empresa
+                        empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
+                        empresa.setAtividade(request.getParameter("atividade") != null ? request.getParameter("atividade") : null);
+                        empresa.setNome(request.getParameter("nome") != null ? request.getParameter("nome") : null);
+                        empresa.setTelefone(request.getParameter("telefone") != null ? request.getParameter("telefone") : null);
+
+                        if (request.getParameter("renda") != null && !request.getParameter("renda").equals("")) {
+                            empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setRenda(0.00);
+                        }
+
+                        if (request.getParameter("orenda") != null && !request.getParameter("orenda").equals("")) {
+                            empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setOrenda(0.00);
+                        }
+
+                        // seta aluno na empresa
+                        empresa.setPessoa(aluno);
+                        System.out.println(empresa.getNome());
+                        System.out.println(empresa.getPessoa().getNome());
+
+                        daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
+
+                        //redireciona para o próximo passo
+                        response.sendRedirect("dependente/listar.jsp");
+                        break;
+                    case "alterar_2_passo":
+
+                        //empresa = daoFactory.getEmpresaDao().perquisarPorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                        //Setando dados do Empresa
+                        empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
+                        empresa.setAtividade(request.getParameter("atividade") != null ? request.getParameter("atividade") : null);
+                        empresa.setNome(request.getParameter("nome") != null ? request.getParameter("nome") : null);
+                        empresa.setTelefone(request.getParameter("telefone") != null ? request.getParameter("telefone") : null);
+
+                        if (request.getParameter("renda") != null && !request.getParameter("renda").equals("")) {
+                            empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setRenda(0.00);
+                        }
+
+                        if (request.getParameter("orenda") != null && !request.getParameter("orenda").equals("")) {
+                            empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setOrenda(0.00);
+                        }
+
+                        // seta aluno na empresa
+                        empresa.setPessoa(aluno);
+
+                        //Altera a empresa
+                        daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
+
+                        //redireciona para a pagina inicial
+                        response.sendRedirect("home.jsp");
+                        break;
                     case "alterar_dados_ocupacao":
-                    
-                    //empresa = daoFactory.getEmpresaDao().perquisarClassePorAluno(Integer.parseInt(request.getParameter("aluno_id")));
-                     //Setando dados do Empresa
-                    empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
-                    empresa.setAtividade(request.getParameter("atividade")!=null?request.getParameter("atividade"):null);
-                    empresa.setNome(request.getParameter("nome")!=null?request.getParameter("nome"):null);
-                    empresa.setTelefone(request.getParameter("telefone")!=null?request.getParameter("telefone"):null);
-                    
-                    if(request.getParameter("renda")!=null && !request.getParameter("renda").equals(""))
-                    empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setRenda(0.00);
-                    
-                    if(request.getParameter("orenda")!=null && !request.getParameter("orenda").equals(""))
-                    empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
-                    else
-                    empresa.setOrenda(0.00);
-                    
-                   // seta aluno na empresa
-                    empresa.setPessoa(aluno);
-                   
-                    //Altera a empresa
-                    daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
-                     
-                    //redireciona para a pagina inicial
-                   // response.sendRedirect("home.jsp");
-                     String idIncricao = request.getParameter("i_id");
-                    //request.getRequestDispatcher("documento/cadastrar.jsp?i_id="+idIncricao+"&editar=1&msg=Ocupação do Estudante foi alterada com sucesso!").forward(request, response);
-                    response.sendRedirect("documento/cadastrar.jsp?i_id="+idIncricao+"&editar=1&msg=Renda do Estudante foi alterada com sucesso!");
-                    break;
-                case "alterar":
-                    //Setando dados do Empresa
-                    empresa = daoFactory.getEmpresaDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
-                    empresa.setNome(request.getParameter("nome"));
-                    empresa.setTelefone(request.getParameter("telefone"));
-                   
-                    //aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("aluno_id")));
-                    empresa.setPessoa(aluno);
-                    //Chamando o metodo alterar do dao e redirecionando para listar empresa                     
-                    daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
-                    response.sendRedirect("empresa/listar.jsp");
-                    break;
-                case "excluir":
-                    //Setando dados da Empresa
-                    empresa = daoFactory.getEmpresaDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
-                    
-                  
-                    //Chamando o metodo excluir do dao e redirecionando para listar aluno  
-                    daoFactory.getEmpresaDao().excluir(empresa);
-                    response.sendRedirect("empresa/listar.jsp");
-            }
+
+                        //empresa = daoFactory.getEmpresaDao().perquisarClassePorAluno(Integer.parseInt(request.getParameter("aluno_id")));
+                        //Setando dados do Empresa
+                        empresa.setTemCarteira(request.getParameter("carteira").equals("sim"));
+                        empresa.setAtividade(request.getParameter("atividade") != null ? request.getParameter("atividade") : null);
+                        empresa.setNome(request.getParameter("nome") != null ? request.getParameter("nome") : null);
+                        empresa.setTelefone(request.getParameter("telefone") != null ? request.getParameter("telefone") : null);
+
+                        if (request.getParameter("renda") != null && !request.getParameter("renda").equals("")) {
+                            empresa.setRenda(Double.parseDouble(request.getParameter("renda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setRenda(0.00);
+                        }
+
+                        if (request.getParameter("orenda") != null && !request.getParameter("orenda").equals("")) {
+                            empresa.setOrenda(Double.parseDouble(request.getParameter("orenda").replace("R$", "").replace(".", "").replace(",", ".")));
+                        } else {
+                            empresa.setOrenda(0.00);
+                        }
+
+                        // seta aluno na empresa
+                        empresa.setPessoa(aluno);
+
+                        //Altera a empresa
+                        daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
+
+                        //redireciona para a pagina inicial
+                        // response.sendRedirect("home.jsp");
+                        String idIncricao = request.getParameter("i_id");
+                        //request.getRequestDispatcher("documento/cadastrar.jsp?i_id="+idIncricao+"&editar=1&msg=Ocupação do Estudante foi alterada com sucesso!").forward(request, response);
+                        response.sendRedirect("documento/cadastrar.jsp?i_id=" + idIncricao + "&editar=1&msg=Renda do Estudante foi alterada com sucesso!");
+                        break;
+                    case "alterar":
+                        //Setando dados do Empresa
+                        empresa = daoFactory.getEmpresaDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
+                        empresa.setNome(request.getParameter("nome"));
+                        empresa.setTelefone(request.getParameter("telefone"));
+
+                        //aluno = (Aluno) daoFactory.getAlunoDao().pesquisarPorId(Integer.parseInt(request.getParameter("aluno_id")));
+                        empresa.setPessoa(aluno);
+                        //Chamando o metodo alterar do dao e redirecionando para listar empresa                     
+                        daoFactory.getEmpresaDao().inserirOuAlterar(empresa);
+                        response.sendRedirect("empresa/listar.jsp");
+                        break;
+                    case "excluir":
+                        //Setando dados da Empresa
+                        empresa = daoFactory.getEmpresaDao().pesquisarPorId(Integer.parseInt(request.getParameter("id")));
+
+                        //Chamando o metodo excluir do dao e redirecionando para listar aluno  
+                        daoFactory.getEmpresaDao().excluir(empresa);
+                        response.sendRedirect("empresa/listar.jsp");
+                }
             } catch (NumberFormatException ne) {
                 String msg = "Preencha corretamente todos os campos! Formato: (R$ 0,00)";
-                
-                if(opcao.equals("cadastrar"))
-                   response.sendRedirect("empresa/cadastrar.jsp?msg=" + msg);
-                // request.getRequestDispatcher("despesa/cadastrar.jsp?msg=" + msg).forward(request, response);
-                else  if(opcao.equals("alterar_2_passo"))
+
+                if (opcao.equals("cadastrar")) {
+                    response.sendRedirect("empresa/cadastrar.jsp?msg=" + msg);
+                } // request.getRequestDispatcher("despesa/cadastrar.jsp?msg=" + msg).forward(request, response);
+                else if (opcao.equals("alterar_2_passo")) {
                     response.sendRedirect("empresa/alterar_2_passo.jsp?msg=" + msg);
-                 // request.getRequestDispatcher("despesa/alterar_6_passo.jsp?msg=" + msg).forward(request, response);
-                
+                }
+                // request.getRequestDispatcher("despesa/alterar_6_passo.jsp?msg=" + msg).forward(request, response);
+
                 //System.out.println("Erro na renda!");
-               // out.println("<br><br><br><br><br><center><font color='red'><h1>Renda invalida!"+request.getParameter("moradia").replace("R$", "").replace(".", "").replace(",", ".")+"<br>A renda deve estar no formato 00.00</h1></font></center>");
-               // out.println("<a href='home.jsp'>voltar</a>");
-            }   catch (ExceptionInInitializerError e) {
-                 String msg = "Ocupação já cadastrada";
-                 request.getRequestDispatcher("home.jsp?msg="+msg).forward(request, response);
-               // response.sendRedirect("home.jsp?msg=" + msg);
+                // out.println("<br><br><br><br><br><center><font color='red'><h1>Renda invalida!"+request.getParameter("moradia").replace("R$", "").replace(".", "").replace(",", ".")+"<br>A renda deve estar no formato 00.00</h1></font></center>");
+                // out.println("<a href='home.jsp'>voltar</a>");
+            } catch (ExceptionInInitializerError e) {
+                String msg = "Ocupação já cadastrada";
+                request.getRequestDispatcher("home.jsp?msg=" + msg).forward(request, response);
+                // response.sendRedirect("home.jsp?msg=" + msg);
             }
         }
     }

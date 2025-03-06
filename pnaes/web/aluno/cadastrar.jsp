@@ -19,7 +19,7 @@
                     //$('#divcurso').style.display = 'block';
                     $('#cat').load('/pnaes/categoriaajax.jsp?campus='+$('#campus').val());
                     $('#curso').html('<option selected="" disabled="" value="">Selecione primeiro a Modalidade do Curso ↑</option>');
-                    $('#periodo').html('<option selected="" disabled="" value="">Selecione primeiro o Curso ↑</option>');
+                    //$('#periodo').html('<option selected="" disabled="" value="">Selecione primeiro o Curso ↑</option>');
                 });
 
             });
@@ -28,19 +28,19 @@
                     //$('#divcurso')[0].style.display="block";
                     //$('#divcurso').style.display = 'block';
                     $('#curso').load('/pnaes/cursoajax.jsp?categoria=' + $('#cat').val()+'&campus='+$('#campus').val());
-                    $('#periodo').html('<option selected="" disabled="" value="">Selecione primeiro o Curso ↑</option>');
-                });
-
-            });/*
-            $(document).ready(function () {
-                $('#curso').change(function () {
-                   // $('#divperiodo')[0].style.display="block";
-                    $('#periodo').load('/pnaes/periodoajax.jsp?curso=' + $('#curso').val());
+                    //$('#periodo').html('<option selected="" disabled="" value="">Selecione primeiro o Curso ↑</option>');
                 });
 
             });
-            
-           /* $(document).ready(function () {
+            $(document).ready(function () {
+                $('#curso').change(function () {
+                   // $('#divperiodo')[0].style.display="block";
+                    //$('#periodo').load('/pnaes/periodoajax.jsp?curso=' + $('#curso').val());
+                });
+
+            });
+            /*
+            $(document).ready(function () {
                 $('#periodo').change(function () {
                    // $('#divperiodo')[0].style.display="block";
                     if($('#periodo').val()==='1'){
@@ -50,8 +50,8 @@
                      document.getElementById('div_1_periodo').style.display = 'block';
                 });
 
-            });*/
-            
+            });
+            */
              function sReprovou() {
                 document.getElementById('div_reprovou').style.display = 'block';
                 document.getElementById('reprovou').value = "0";
@@ -108,19 +108,18 @@
 
 
                             <div class="form-group row">
-                                <label class="col-md-3 label-control" for="periodo">Período*:</label>
+                                <label class="col-md-3 label-control" for="periodo">Período:</label>
                                 <div class="col-md-9">
-                                    <select id="periodo" name="periodo" class="form-control" required>
+                                    <select id="periodo" name="periodo" class="form-control">
                                         <option selected="" disabled="" value="">Selecione primeiro o Curso ↑</option>
-                                        <option value="1 Ano/Modulo/Periodo">1 Ano/Modulo/Periodo</option>
-                                        <option value="2 Ano/Modulo/Periodo">2 Ano/Modulo/Periodo</option>
-                                        <option value="3 Ano/Modulo/Periodo">3 Ano/Modulo/Periodo</option>
-                                        <option value="4 Periodo">4 Periodo</option>
-                                        <option value="5 Periodo">5 Periodo</option>
-                                        <option value="6 Periodo">6 Periodo</option>
-                                        <option value="7 Periodo">7 Periodo</option>
-                                        <option value="8 Periodo">8 Periodo</option>
-
+                                        <option value="1">1 Ano/Modulo/Periodo</option>
+                                        <option value="2">2 Ano/Modulo/Periodo</option>
+                                        <option value="3">3 Ano/Modulo/Periodo</option>
+                                        <option value="4">4 Periodo</option>
+                                        <option value="5">5 Periodo</option>
+                                        <option value="6">6 Periodo</option>
+                                        <option value="7">7 Periodo</option>
+                                        <option value="8">8 Periodo</option>
                                     </select>
                                 </div>
                             </div>
