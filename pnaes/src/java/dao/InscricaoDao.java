@@ -60,8 +60,7 @@ public class InscricaoDao extends DaoGenerico{
     public List<Inscricao> perquisarPorBolsaECategoria(Integer bolsaId, Integer categoriaId , Integer editalId) 
     {
         try{
-        String jpql = "select i from Inscricao i where i.aluno.curso.categoria.id = "+categoriaId+" and i.bolsa1.id = "+bolsaId+" and i.edital.id = "+editalId;
-          
+        String jpql = "select i from Inscricao i where i.aluno.curso.categoria.id = "+categoriaId+" and i.bolsa1.id = "+bolsaId+" and i.edital.id = "+editalId;          
         Query query = em.createQuery(jpql, Inscricao.class);        
         return query.getResultList();
         } catch (Exception e) {
@@ -75,7 +74,6 @@ public class InscricaoDao extends DaoGenerico{
         try {
             String jpql = "select i from Inscricao i  where i.aluno.id = "+alunoId+" and i.edital.id = "+editalId;
             return em.createQuery(jpql, Inscricao.class).getResultList();
-
         } catch (Exception ex) {
             return null;
         } finally {
@@ -87,7 +85,6 @@ public class InscricaoDao extends DaoGenerico{
         try {
             String jpql = "select i from Inscricao i where i.aluno.curso.categoria.id = "+categoriaId+" and i.aluno.curso.id = "+cursoId+" and i.bolsa1.id = "+bolsaId+" and i.edital.id = "+editalId;        
             return em.createQuery(jpql, Inscricao.class).getResultList();
-
         } catch (Exception ex) {
             return null;
         } finally {
@@ -145,9 +142,9 @@ public class InscricaoDao extends DaoGenerico{
         } finally {
             em.close();
         }
-    }
-    
-    
+    }    
+//laranardes24092010.
+    //sala 0221 cado hdmi foi pro saco
             
             
 }

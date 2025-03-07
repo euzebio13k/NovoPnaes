@@ -17,25 +17,6 @@ public class AlunoDao extends DaoGenerico{
     public AlunoDao() {
         super(Aluno.class);
     }
-
-    public Aluno buscarAlunoPor(String login) 
-    {
-        try {
-        String jpql = "select c from Aluno c where c.cpf = '"+login+"' or c.matricula = '"+login+"'";
-        //String jpql = "select c from Aluno c where c.cpf = '00982109121'";
-        //System.out.println("aqui = "+jpql);
-        
-        Query query = em.createQuery(jpql);
-        System.out.println("aqui = "+ query.getSingleResult());
-        return (Aluno) query.getSingleResult();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            throw new ExceptionInInitializerError(e);
-        } finally {
-            em.close();
-        }
-
-    }
     
     public List<Aluno> listarAlunos() {
         try{
@@ -100,9 +81,5 @@ public class AlunoDao extends DaoGenerico{
         } finally {
             em.close();
         }
-    }
-    
-   
-    
-   
+    }   
 }

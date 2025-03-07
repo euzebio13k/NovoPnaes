@@ -13,19 +13,19 @@ import javax.persistence.*;
  * @author ronan
  */
 @Entity
-public class Empresa implements Serializable{
+public class Ocupacao implements Serializable{
     @Id
     @GeneratedValue
     private Integer id;
     
   
     @ManyToOne
-    @JoinColumn(name="pessoa_id", unique = true)
-    private Pessoa pessoa;
+    @JoinColumn(name="aluno_id", unique = true)
+    private Aluno aluno;
     private Boolean temCarteira;
     private String atividade;
     private String telefone;
-    private String nome;
+    private String nomeEmpresa;
     private Double renda;
     private Double orenda;
    
@@ -38,12 +38,12 @@ public class Empresa implements Serializable{
         this.id = id;
     }
     
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Aluno getAluno() {
+        return aluno;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
     }
 
     public Boolean getTemCarteira() {
@@ -70,12 +70,12 @@ public class Empresa implements Serializable{
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    public String getNome() {
-        return nome;
+    public String getNomeEmpresa() {
+        return nomeEmpresa;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
     }
 
     public Double getRenda() {

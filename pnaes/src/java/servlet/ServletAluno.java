@@ -219,7 +219,7 @@ public class ServletAluno extends HttpServlet {
                     daoFactory.getAlunoDao().inserirOuAlterar(aluno);
                     if (aluno.getMoradia().equals("sozinho") && aluno.getDependeciaFamiliar().equals("indepTodas")) {
                         //Excluir os Dependentes
-                        List<Dependente> dependentes = daoFactory.getDependenteDao().perquisarPorPessoa(aluno.getId());
+                        List<Dependente> dependentes = daoFactory.getDependenteDao().perquisarPorAluno(aluno.getId());
                         if (!dependentes.isEmpty()) {
                             for (Dependente d : dependentes) {
                                 daoFactory.getDependenteDao().excluir(d);

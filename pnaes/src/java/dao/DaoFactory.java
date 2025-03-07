@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import modelo.*;
@@ -30,8 +25,8 @@ public class DaoFactory {
     public DaoGenerico<Despesa>getDespesaDao(){
         return new DaoGenerico<Despesa>(Despesa.class);
     }
-     public DaoGenerico<Empresa> getEmpresaDao(){
-        return new DaoGenerico<Empresa>(Empresa.class);
+     public DaoGenerico<Ocupacao> getOcupacaoDao(){
+        return new DaoGenerico<Ocupacao>(Ocupacao.class);
     }
     public EntrevistaDao getEntrevistaDao(){
         return new EntrevistaDao();

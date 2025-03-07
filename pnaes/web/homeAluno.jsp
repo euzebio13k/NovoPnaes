@@ -1,7 +1,7 @@
 <%@page import="modelo.Dependente"%>
 <%@page import="modelo.FichaMedica"%>
 <%@page import="modelo.Despesa"%>
-<%@page import="modelo.Empresa"%>
+<%@page import="modelo.Ocupacao"%>
 <%@page import="modelo.Edital"%>
 <%@page import="modelo.Inscricao"%>
 <%@page import="java.util.List"%>
@@ -12,20 +12,15 @@
         Boolean editalEncerrado = false;
         List<Despesa> despesas = daoFactory.getDespesaDao().perquisarPorAluno(alunoId);
         Edital edital = (Edital) daoFactory.getEditalDao().listar().get(0);
-        Empresa empresa = new Empresa();
-        empresa = daoFactory.getEmpresaDao().perquisarPorPessoa(alunoId).get(0);
+        Ocupacao ocupacao = new Ocupacao();
+        ocupacao = (Ocupacao) daoFactory.getOcupacaoDao().perquisarPorAluno(alunoId).get(0);
         Despesa despesa = new Despesa();
         FichaMedica fichaMedica = new FichaMedica();
         Dependente dependente = new Dependente();
         List<Inscricao> ins = daoFactory.getInscricaoDao().perquisarAlunoPorEdital(alunoId, 1);
         List<FichaMedica> fichasMedicas = daoFactory.getFichaMedicaDao().perquisarPorAluno(alunoId);
         if (session.getAttribute("nivel").equals(1) || session.getAttribute("nivel").equals(3)) {
-            /*out.print(session.getAttribute("cpf"));
-                                String cpf = new String();
-                                cpf = session.getAttribute("cpf").toString().replace(".", "");
-                                cpf = (cpf.replace("-", ""));
-                                
-                                Aluno aluno2 = (Aluno) daoFactory.getAlunoDao().buscarAlunoPor(cpf);*/
+            //System.out.println(ocupacao.getId()+"- ocupacao = "+ocupacao.getNomeEmpresa());
     %>
     <br>
     <div class="element-box">
@@ -84,10 +79,10 @@
                             <div class="element-box-content">
                             </div>
                             <div class="element-box-content">
-                                <% if (empresa.getAtividade() != null) { %>
-                                <a href="/pnaes/empresa/alterar_2_passo.jsp"> <button  class="mr-2 mb-2 btn btn-info btn-lg" type="button">Alterar o 2º Passo&#10004;</button> </a>
+                                <% if (ocupacao.getAtividade() != null) { %>
+                                <a href="/pnaes/ocupacao/alterar.jsp?id=<%=ocupacao.getId()%>"> <button  class="mr-2 mb-2 btn btn-info btn-lg" type="button">Alterar o 2º Passo&#10004;</button> </a>
                                 <%  } else { %>   
-                                <a href="/pnaes/empresa/cadastrar.jsp"> <button  class="mr-2 mb-2 btn btn-primary btn-lg" type="button">2º Passo</button> </a>
+                                <a href="/pnaes/ocupacao/cadastrar.jsp"> <button  class="mr-2 mb-2 btn btn-primary btn-lg" type="button">2º Passo</button> </a>
                                 <% }   %> 
                             </div>
                         </div>
@@ -95,8 +90,7 @@
                 </div>
             </div>
             <% }
-System.out.println("atividade = "+empresa.getAtividade());
-            if (empresa.getAtividade() != null) { %>
+            if (ocupacao.getAtividade() != null) { %>
             <div class="col-md-6 col-xl-4">
                 <div class="padded b-l b-r-xl">
                     <div class="element-info-with-icon smaller">

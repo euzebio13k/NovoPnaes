@@ -8,7 +8,7 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import modelo.Empresa;
+import modelo.Ocupacao;
 import util.JPAUtil;
 
 /**
@@ -23,12 +23,10 @@ public class DaoGenerico<T> {
     public DaoGenerico() {
         em = JPAUtil.getEntityManager();
     }
-
     public DaoGenerico(Class classe) {
         this.classe = classe;
         em = JPAUtil.getEntityManager();
     }
-
     public T inserirOuAlterar(T u) {
         try {
             em.getTransaction().begin();
@@ -42,7 +40,6 @@ public class DaoGenerico<T> {
             em.close();
         }
     }
-
     public void excluir(T u) {
         try {
             em.getTransaction().begin();
@@ -56,7 +53,6 @@ public class DaoGenerico<T> {
             em.close();
         }
     }
-
     public T pesquisarPorId(Integer id) {
         try {
         return (T) this.em.find(classe, id);
@@ -67,7 +63,6 @@ public class DaoGenerico<T> {
             em.close();
         }        
     }
-
     public List<T> listar() {
         try {
         String jpql = "select a from " + classe.getSimpleName() + " a";
@@ -79,7 +74,6 @@ public class DaoGenerico<T> {
             em.close();
         }
     }
-
     public List<T> pesquisarPor(String busca, String campo) {
         try {
         String jpql = "select a from " + classe.getSimpleName() + " a where a." + campo + " like '%" + busca + "%'";
@@ -91,30 +85,15 @@ public class DaoGenerico<T> {
             em.close();
         }
     }
-
-    public List<T> perquisarPorPessoa(Integer idPessoa) {
+    public List<T> perquisarPorAluno(Integer alunoId) {
         try {
-            String jpql = "select a from " + classe.getSimpleName() + " a where a.pessoa.id = " + idPessoa;
+            String jpql = "select a from " + classe.getSimpleName() + " a where a.aluno.id = " + alunoId;
             return em.createQuery(jpql, classe).getResultList();
-
         } catch (Exception ex) {
             return null;
         }
         finally {
             em.close();
         }
-    }
-    public List<T> perquisarPorAluno(Integer idAluno) {
-        try {
-            String jpql = "select a from " + classe.getSimpleName() + " a where a.aluno.id = " + idAluno;
-            return em.createQuery(jpql, classe).getResultList();
-
-        } catch (Exception ex) {
-            return null;
-        }
-        finally {
-            em.close();
-        }
-    }
-    
+    }    
 }
