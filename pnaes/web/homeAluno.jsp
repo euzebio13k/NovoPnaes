@@ -80,7 +80,7 @@
                             </div>
                             <div class="element-box-content">
                                 <% if (ocupacao.getAtividade() != null) { %>
-                                <a href="/pnaes/ocupacao/alterar.jsp?id=<%=ocupacao.getId()%>"> <button  class="mr-2 mb-2 btn btn-info btn-lg" type="button">Alterar o 2º Passo&#10004;</button> </a>
+                                <a href="/pnaes/ocupacao/alterar_2_passo.jsp?id=<%=ocupacao.getId()%>"> <button  class="mr-2 mb-2 btn btn-info btn-lg" type="button">Alterar o 2º Passo&#10004;</button> </a>
                                 <%  } else { %>   
                                 <a href="/pnaes/ocupacao/cadastrar.jsp"> <button  class="mr-2 mb-2 btn btn-primary btn-lg" type="button">2º Passo</button> </a>
                                 <% }   %> 

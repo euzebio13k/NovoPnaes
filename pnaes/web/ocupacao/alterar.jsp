@@ -28,8 +28,8 @@
                             <div class="form-group row">
                                 <label class="col-md-3 label-control" for="nome">Nome</label>
                                 <div class="col-md-9">
-                                    <input type="text" name="nome" value="<%=ocupacao.getNome()%>"
-                                           id="nome" class="form-control" placeholder="Nome">
+                                    <input type="text" name="nomeEmpresa" value="<%=ocupacao.getNomeEmpresa()%>"
+                                           id="nome" class="form-control" placeholder="Nome da Empresa">
                                 </div>
                             </div>
                             <div class="form-group row">
