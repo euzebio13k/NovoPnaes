@@ -9,7 +9,7 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.password" value="123"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pnaes?useSSL=false"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://10.8.1.2:3306/pnaes?useSSL=false"/>
       <!--configurando C3P0 -->
       <property name="c3p0.acquire_increment" value="2"/>
       <property name="c3p0.idle_test_period" value="120"/>
