@@ -43,7 +43,7 @@
 }
 .form-group label{
     
-    background-color: #CCCCCC;
+    background-color: #eee;
     margin-top: 3px;
     margin-bottom: 3px;
     font-size: 120%;
@@ -57,7 +57,7 @@
 }
 .header{
     background-color: #eee;
-    padding: 20px;
+    padding: 10px;
     display: flex;
 }
 fieldset {
@@ -73,7 +73,7 @@ h2{
 }
 .conteudo{
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 .user {
     display: flex;

@@ -82,8 +82,8 @@ public class ServletDependente extends HttpServlet {
                         //Chamando o metodo inserir do dao e redirecionando para listar Dependente
                         daoFactory.getDependenteDao().inserirOuAlterar(dependente);
                         
-                        request.getRequestDispatcher("dependente/listar.jsp?msg=Membro Familiar "+dependente.getNome()+" foi incluído com sucesso!").forward(request, response);
-                       // response.sendRedirect("dependente/listar.jsp?msg=Membro Familiar "+dependente.getNome()+" foi incluido com sucesso!");
+                        //request.getRequestDispatcher("dependente/listar.jsp?msg=Membro Familiar "+dependente.getNome()+" foi incluído com sucesso!").forward(request, response);
+                        response.sendRedirect("dependente/listar.jsp?msg=Membro Familiar "+dependente.getNome()+" foi incluido com sucesso!");
                         
                         }catch(IllegalStateException | ExceptionInInitializerError ce){
                             request.getRequestDispatcher("dependente/listar.jsp?msg2=Membro Familiar já cadastrado.").forward(request, response);
